@@ -1,0 +1,35 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches and temporary archives
+*.cache
+*.part
+*.zip
+*.tar.gz
+test_val_dl/
+repo_assets/
+
+# Temporary HTML debug and dump files
+*.html
+info.txt
+prompt.txt
+1_jpg.rf.*.jpg
+sample_annotated.jpg
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.env
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Antigravity agent configuration & workspace skills
+.agents/
+

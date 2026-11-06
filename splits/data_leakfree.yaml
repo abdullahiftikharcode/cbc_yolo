@@ -1,0 +1,6 @@
+path: /content/dataset
+train: train_leakfree.txt
+val: val_leakfree.txt
+
+nc: 1
+names: ['WBC']

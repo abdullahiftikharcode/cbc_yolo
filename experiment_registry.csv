@@ -1,0 +1,3 @@
+exp_id,date,model,weights,split,imgsz,batch_size,epochs,best_epoch,precision,recall,mAP50,mAP50_95,training_time_min,hypothesis,status
+EXP_001_BASELINE,2026-11-06 07:37,YOLOv5s,yolov5s.pt (pretrained),Leak-Free Grouped (80/20),640,32,50,48,0.9724,0.9967,0.9901,0.8536,150.54,Official YOLOv5s baseline saved directly to Google Drive,COMPLETED
+EXP_002_HISTO_BOX,2026-11-06 09:32,YOLOv5s,yolov5s.pt (pretrained),Leak-Free Grouped (80/20),640,32,35,31,0.9742,0.9946,0.9895,0.7876,109.19,"box:0.08, degrees:180, flipud:0.5, cos-lr, cls:0.10",COMPLETED
