@@ -3,16 +3,11 @@ Roll NO : BSCS23070
 Assignment : YOLOv5 training on WBC
 
 
-1) Model architecture/version:
-    YOLOv5s version 0.7 
-2) Number of Training Epochs:
-    50 epochs
-3) Image size :
-    640x640
-4) Learning rate :
-    Initial lr0 = 0.01, final lrf = 0.01 (linear decay with 3.0 warmup epochs)
-5) Optimizer :
-    SGD with momentum = 0.937 and weight decay = 0.0005 
+1) Model architecture/version:YOLOv5s version 0.7 
+2) Number of Training Epochs: 50 epochs
+3) Image size : 640x640
+4) Learning rate : Initial lr0 = 0.01, final lrf = 0.01 (linear decay with 3.0 warmup epochs)
+5) Optimizer : SGD with momentum = 0.937 and weight decay = 0.0005 
 6) Other important training settings : 
     Mixed precision: PyTorch AMP FP16
     Loss weights: Box loss gain = 0.05, Objectness gain = 1.0, Class gain = 0.5
