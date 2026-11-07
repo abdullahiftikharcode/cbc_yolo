@@ -1,0 +1,37 @@
+Name : Muhammad Abdullah
+Roll NO : BSCS23070
+Assignment : YOLOv5 training on WBC
+
+
+1) Model architecture/version:
+  YOLOv5s version 0.7 
+2) Number of Training Epochs:
+   50 epochs
+3) Image size :
+   640x640
+4) Learning rate :
+   Initial lr0 = 0.01, final lrf = 0.01 (linear decay with 3.0 warmup epochs)
+5) Optimizer :
+   SGD with momentum = 0.937 and weight decay = 0.0005 
+6) Other important training settings : 
+   Mixed precision: PyTorch AMP FP16
+   Loss weights: Box loss gain = 0.05, Objectness gain = 1.0, Class gain = 0.5
+   IoU training threshold: 0.20
+   AutoAnchor: Enabled (9 anchor shapes matched across P3, P4, and P5 detection grids)
+   Training hardware: NVIDIA Tesla T4 GPU 
+7) Any additional techniques used to improve detection performance :
+    -Transfer Learning from COCO: Started from yolov5s.pt pretrained on COCO instead of training from scratch. The early convolutional layers already knew general edge and texture filters, 
+     which helped learn cell shapes faster and prevented overfitting on the single WBC class.
+
+    -AutoAnchor Cluster Matching: Before training, AutoAnchor checked the dataset box sizes against default anchors. Best possible recall (BPR) was over 99% across the small (P3), medium  
+    (P4), and large (P5) heads, so the anchors fit cell shapes well.
+
+    -Class Index Fix (1 -> 0): Programmatically replaced all leading '1 ' labels with '0 ' across all 9,586 files to satisfy YOLO 0-indexing boundaries (0 <= class < nc), preventing loss rejection or index crashes
+
+    -Leak-Free Group Split (Fixing 82.1% Leakage): Grouped 9,586 augmented images by their 5,109 unique slide IDs into an 80/20 group split (seed 42: 7,584 train / 2,002 val) with 0% slide
+     overlap, preventing memorization.
+
+    -Tuning Post-Processing NMS: Swept NMS IoU thresholds on validation data. Lowering the threshold to 0.50 removed duplicate overlapping predictions on cell clusters, raising mAP@0.5:0.95 
+from 0.8536 to 0.8550 without retraining or slowing down inference (10.4 ms per image).
+
+     -Rotation Ablation Post-Mortem (EXP_002): Tested 360-degree rotation (degrees: 180.0) based on cell symmetry. Proved that rotating an oblong cell by 45 degrees expands axis-aligned   bounding boxes by up to 100%, dropping mAP@0.5:0.95 by 6.6%. Kept baseline tight bounding boxes.
